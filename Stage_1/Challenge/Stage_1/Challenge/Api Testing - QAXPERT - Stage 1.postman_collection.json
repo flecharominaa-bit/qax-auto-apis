@@ -1,0 +1,265 @@
+{
+  "info": {
+    "_postman_id": "717d50d9-a9c0-477d-9ff7-d60130a01efa",
+    "name": "Api Testing - QAXPERT - Stage 1",
+    "description": "Colección de pruebas para el Ejercicio 1: Health Check, Registro y Login en la API de Notes (ExpandTesting).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53805044",
+    "_collection_link": "https://go.postman.co/collection/53805044-717d50d9-a9c0-477d-9ff7-d60130a01efa?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "01 Excercise -Test API Auth",
+      "item": [
+        {
+          "name": "01 - Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health-check",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health-check"
+              ]
+            },
+            "description": "Verifica que el servidor de la API está vivo y respondiendo."
+          },
+          "response": []
+        },
+        {
+          "name": "02 - Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ninja Tester\",\n  \"email\": \"ninjatester120@qaxpert.com\",\n  \"password\": \"Password123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "register"
+              ]
+            },
+            "description": "Crea un nuevo usuario en el sistema. \n\n⚠️ Ojo de Tester: Si corres este request dos veces seguidas, la API te dará un Error 400 porque el correo ya existe. ¡Recuerda cambiar el número del correo (ej. 002, 003) en el Body para tu siguiente prueba!"
+          },
+          "response": []
+        },
+        {
+          "name": "03 - Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"ninjatester120@qaxpert.com\",\n  \"password\": \"Password123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
+            },
+            "description": "Inicia sesión con el usuario recién creado. Devuelve un Token de autenticación."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02 Challenge 1: Testing Apis en Postman",
+      "item": [
+        {
+          "name": "Get profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "ad9121e3807a4d188cd9eb3b64a14f8596dfe22b88fb45478ee264f9c31095e4",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-auth-token",
+                "value": "ad9121e3807a4d188cd9eb3b64a14f8596dfe22b88fb45478ee264f9c31095e4",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"currentPassword\": \"NewPassword123!\",\r\n  \"newPassword\": \"NewPassword1234!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/change-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"ninjatester120@qaxpert.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/forgot-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Reset Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"token\": \"fake-token-123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/verify-reset-password-token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "verify-reset-password-token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/users/reset-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://practice.expandtesting.com/notes/api",
+      "type": "string"
+    }
+  ]
+}
