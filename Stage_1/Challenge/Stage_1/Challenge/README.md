@@ -36,4 +36,4 @@ Durante las pruebas no fue posible obtener un token válido de recuperación de 
 Por este motivo, no se pudo completar el flujo positivo de reset de contraseña
 Se validaron escenarios negativos utilizando tokens inválidos o expirados para verificar el comportamiento del sistema
 
-    
+Entrega finalizada
