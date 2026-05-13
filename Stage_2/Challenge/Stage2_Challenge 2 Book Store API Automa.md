@@ -1,6 +1,6 @@
-# Challenge 2: Book Store API Automation
-
-## Feature: Gestión de cuenta y libros en Book Store
+# lenguaje: es
+@BookStore
+Feature: Gestión de cuenta y libros en Book Store
   Como usuario de la API de Book Store
   Quiero registrarme y autenticarme
   Para poder gestionar mi colección de libros de forma segura
@@ -28,10 +28,10 @@
 
   @smoke @e2e
   Scenario: Flujo completo - Registrar usuario, obtener libros y agregar a colección
-    Step 1: Registrar un nuevo usuario con datos aleatorios
-    Step 2: Generar el token de autenticación (Bearer Token)
-    Step 3: Consultar el perfil del usuario para validar el registro
-    Step 4: Obtener la lista de libros disponibles y extraer el primer ISBN
-    Step 5: Agregar ese libro a la colección del usuario usando el Token
+    Given un nuevo usuario registrado con datos aleatorios
+    And un token de autenticación (Bearer Token) generado exitosamente
+    When consulto el perfil del usuario para validar el registro
+    And obtengo la lista de libros disponibles para extraer el primer ISBN
+    And agrego ese libro a la colección del usuario usando el Token
     Then la API debe responder con un status code 201
     And el libro debe aparecer en la colección del usuario
