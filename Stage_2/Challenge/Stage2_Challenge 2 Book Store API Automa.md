@@ -1,3 +1,8 @@
+# Challenge 2: Book Store API Automation
+
+Este documento detalla los escenarios de prueba para la API de Book Store utilizando sintaxis Gherkin.
+
+```gherkin
 # lenguaje: es
 @BookStore
 Feature: Gestión de cuenta y libros en Book Store
@@ -6,7 +11,7 @@ Feature: Gestión de cuenta y libros en Book Store
   Para poder gestionar mi colección de libros de forma segura
 
   Background:
-    Given que tengo acceso a la API en "https://demoqa.com"
+    Given que tengo acceso a la API en "[https://demoqa.com](https://demoqa.com)"
 
   @negative
   Scenario: Intentar crear un usuario con datos inválidos
