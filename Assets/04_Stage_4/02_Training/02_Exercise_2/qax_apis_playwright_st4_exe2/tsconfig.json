@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    /* Estándar moderno de JavaScript */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+
+    /* Compatibilidad y Simplicidad */
+    "esModuleInterop": true,            // Permite importar librerías CommonJS como si fueran ESM
+    "skipLibCheck": true,               // Ignora errores en librerías externas para ir más rápido
+    "forceConsistentCasingInFileNames": true, // Evita problemas entre Windows y Mac con mayúsculas
+
+    /* Calidad del código (Básico) */
+    "strict": true,                     // Activa reglas de oro para evitar errores comunes
+    "resolveJsonModule": true           // Permite importar archivos .json directamente
+  }
+}

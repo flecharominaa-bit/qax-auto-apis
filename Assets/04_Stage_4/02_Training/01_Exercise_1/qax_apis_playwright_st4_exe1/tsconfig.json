@@ -1,0 +1,17 @@
+{
+  // Opciones para configurar cómo se lee y traduce nuestro código
+  "compilerOptions": {
+    // Traduce nuestro código a una versión de JavaScript (ES6) que es estándar y muy compatible
+    "target": "ES6",
+    // Define la forma en que nuestros archivos se conectan y comparten información entre sí
+    "module": "commonjs",
+    // Activa un modo riguroso que nos avisa de posibles errores mientras escribimos el código
+    "strict": true,
+    // Facilita la importación de librerías externas, haciendo que funcionen sin problemas
+    "esModuleInterop": true,
+    // Nos permite importar y usar directamente la información de archivos de datos (.json) en nuestras pruebas
+    "resolveJsonModule": true,
+    // Le da a nuestro editor (como VS Code) el "vocabulario" necesario para ayudarnos a autocompletar código de Node y Playwright
+    "types": ["node", "@playwright/test"]
+  }
+}
