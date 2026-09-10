@@ -18,9 +18,17 @@ test.describe.serial('Mission 1 - Smoke Test: Resumen de cuentas', () => {
   };
 
   let banking;
+  let apiContext;
 
-  test.beforeAll(({ request }) => {
-    banking = new HomebankingService(request);
+  test.beforeAll(async ({ playwright }) => {
+    apiContext = await playwright.request.newContext({
+      baseURL: 'https://homebanking-demo.onrender.com',
+    });
+    banking = new HomebankingService(apiContext);
+  });
+
+  test.afterAll(async () => {
+    await apiContext.dispose();
   });
 
   test('CA 1.0 - Registro de un cliente nuevo', async () => {
@@ -33,8 +41,7 @@ test.describe.serial('Mission 1 - Smoke Test: Resumen de cuentas', () => {
     const { status, body } = await banking.login(usuario.username, usuario.password);
     console.log('Login:', body);
     expect(status).toBe(200);
-    expect(body).toHaveProperty('access_token');
-  });
+expect(body).toHaveProperty('token');  });
 
   test('Reset del simulador para partir de un estado limpio', async () => {
     const { status } = await banking.resetearSistema();

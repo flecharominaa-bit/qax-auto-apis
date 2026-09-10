@@ -1,22 +1,34 @@
-let nombre = "Romi";
-let edad = 32;
-let estudiaAPI = true;
-let hobbies = ["series", "gym", "viajar"];
+const readline = require('readline/promises');
+const { stdin: input, stdout: output } = require('process');
 
-console.log(nombre, edad, estudiaAPI, hobbies);
+async function main() {
+  let nombre = "Romi";
+  let edad = 32;
+  let estudiaAPI = true;
+  let hobbies = ["series", "gym", "viajar"];
 
-// tipos
-console.log(typeof nombre);
-console.log(typeof edad);
-console.log(typeof estudiaAPI);
-console.log(typeof hobbies);
+  console.log(nombre, edad, estudiaAPI, hobbies);
 
-// agregar hobby
-let nuevoHobby = prompt("¿Cuál es tu hobby favorito?");hobbies.push(nuevoHobby);
+  // tipos
+  console.log(typeof nombre);
+  console.log(typeof edad);
+  console.log(typeof estudiaAPI);
+  console.log(typeof hobbies);
 
-// cantidad
-console.log(hobbies.length);
+  // agregar hobby
+  // prompt() es una función del navegador y no existe en Node.js;
+  // usamos el módulo nativo readline/promises para pedir el dato por consola.
+  const rl = readline.createInterface({ input, output });
+  const nuevoHobby = await rl.question("¿Cuál es tu hobby favorito? ");
+  rl.close();
+  hobbies.push(nuevoHobby);
 
-// sumar edad
-edad = edad + 1;
-console.log(edad);
+  // cantidad
+  console.log(hobbies.length);
+
+  // sumar edad
+  edad = edad + 1;
+  console.log(edad);
+}
+
+main();

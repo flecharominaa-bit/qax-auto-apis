@@ -4,7 +4,7 @@ class AuthService {
   }
 
   async login(email, password) {
-    const response = await this.request.post('/auth/login', {
+    const response = await this.request.post('auth/login', {
       data: { email, password },
     });
     const body = await response.json().catch(() => ({}));
@@ -12,7 +12,7 @@ class AuthService {
   }
 
   async getProfile(token) {
-    const response = await this.request.get('/auth/profile', {
+    const response = await this.request.get('auth/profile', {
       headers: { Authorization: `Bearer ${token}` },
     });
     const body = await response.json().catch(() => ({}));

@@ -8,6 +8,7 @@ class HomebankingService {
     return this.token ? { Authorization: `Bearer ${this.token}` } : {};
   }
 
+
   async registrar({ username, password, name, email }) {
     const response = await this.request.post('/auth/registro', {
       data: { username, password, name, email },
@@ -21,8 +22,8 @@ class HomebankingService {
       data: { username, password },
     });
     const body = await response.json().catch(() => ({}));
-    if (response.status() === 200 && body?.access_token) {
-      this.token = body.access_token;
+   if (response.status() === 200 && body?.token) {
+  this.token = body.token;
     }
     return { status: response.status(), body };
   }
