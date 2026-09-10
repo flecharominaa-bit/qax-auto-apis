@@ -22,14 +22,12 @@ test.describe.serial('Challenge 2: Automatización Book Store API', () => {
         const response = await request.post('/Account/v1/User', {
             data: { userName, password }
         });
-        
-const body = await response.json(); // Guardamos la respuesta en 'body' primero
-        console.log('Detalle de la API:', body); // Ahora podemos verla en la terminal siempre
 
-        
-        expect(response.status()).toBe(201); // Verificamos creación exitosa
         const body = await response.json();
-        userId = body.userID; 
+        console.log('Detalle de la API:', body);
+
+        expect(response.status()).toBe(201); // Verificamos creación exitosa
+        userId = body.userID;
         console.log(`✅ Usuario creado: ${userName}`);
     });
 
