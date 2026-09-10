@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "b2287ae4-d953-4916-9870-879cb3609591",
+		"name": "Api Testing - Go Rest- QAX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47868274",
+		"_collection_link": "https://ninja-for-testing-s-team.postman.co/workspace/Api-Testing---Ninja-For-testing~face8059-dfb3-4110-9022-f7fbfcaf3235/collection/47868274-b2287ae4-d953-4916-9870-879cb3609591?action=share&source=collection_link&creator=47868274"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ninja For Testing\",\n  \"gender\": \"male\",\n  \"email\": \"T111estAutomatiaon1@qaxpert.com\",\n  \"status\": \"active\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointUser}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointUser}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointUser}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointUser}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver usuarios por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointUser}}/8143364",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointUser}}",
+								"8143364"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publicaciones",
+			"item": [
+				{
+					"name": "Crear publicacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 8141824,\n  \"title\": \"Mi primer post automatizado\",\n  \"body\": \"Contenido de prueba generado por la automatización.\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointPost}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointPost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Publicaciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointPost}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointPost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Publicaciones por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointPost}}/244560",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointPost}}",
+								"244560"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comentarios",
+			"item": [
+				{
+					"name": "Crear un comentario a una publicacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"post_id\": 244150,\n  \"name\": \"Ninja Tester\",\n  \"email\": \"ninja@example.com\",\n  \"body\": \"Este es un comentario de prueba.\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointComments}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointComments}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver los comentarios de una publicacion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointComments}}/169420",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointComments}}",
+								"169420"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todos los comentarios realizados por el usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context}}/{{endpointComments}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context}}",
+								"{{endpointComments}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": ""
+		},
+		{
+			"key": "context",
+			"value": ""
+		},
+		{
+			"key": "endpointUser",
+			"value": ""
+		},
+		{
+			"key": "endpointPost",
+			"value": ""
+		},
+		{
+			"key": "endpointComments",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
