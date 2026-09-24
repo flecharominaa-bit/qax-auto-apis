@@ -1,5 +1,6 @@
 // playwright.config.js
-require('dotenv').config();
+const env = process.env.ENV || 'dev';
+require('dotenv').config({ path: `.env.${env}` });
 
 module.exports = {
   use: {
@@ -8,6 +9,11 @@ module.exports = {
       'Content-Type': 'application/json',
       'x-api-key': process.env.API_KEY,
     },
+    // actionTimeout es la opción que Playwright aplica a los requests del fixture `request`
+    actionTimeout: parseInt(process.env.API_TIMEOUT) || 5000,
   },
-  reporter: [['html', { open: 'never' }]],
+  reporter: [
+    ['html', { open: 'never' }],
+    ['list'],
+  ],
 };
