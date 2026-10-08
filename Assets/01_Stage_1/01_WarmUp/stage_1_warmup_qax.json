@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "566824e5-44a0-46cf-bbc3-f8def091b34c",
+		"name": "Api Testing - QAXPERT",
+		"description": "Colección para probar creación de posts, listado de usuarios y comentarios en JSONPlaceholder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47868274",
+		"_collection_link": "https://ninja-for-testing-s-team.postman.co/workspace/Api-Testing---Mentores~e879c789-35f1-459d-8a48-f1b4a0936ca2/collection/47868274-566824e5-44a0-46cf-bbc3-f8def091b34c?action=share&source=collection_link&creator=47868274"
+	},
+	"item": [
+		{
+			"name": "CP01 - Crear nuevo post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Mi primer post QAx\",\n  \"body\": \"Contenido de prueba\",\n  \"userId\": 1\n}"
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CP02 - Listar usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CP03 - Listar comentarios de un post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments?postId=1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

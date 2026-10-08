@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "487a73a4-971e-4697-8d18-86601abbe35a",
+		"name": "Restfull-Api - Stage 3 - QAX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47868274",
+		"_collection_link": "https://ninja-for-testing-s-team.postman.co/workspace/Api-Testing---Ninja-For-testing~face8059-dfb3-4110-9022-f7fbfcaf3235/collection/47868274-487a73a4-971e-4697-8d18-86601abbe35a?action=share&source=collection_link&creator=47868274"
+	},
+	"item": [
+		{
+			"name": "Actualizar un producto por ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"HP\",\n   \"data\": {\n      \"year\": 2019,\n      \"price\": 1849.99,\n      \"CPU model\": \"Intel Core i9\",\n      \"Hard disk size\": \"1 TB\"\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.restful-api.dev/objects/ff8081819782e69e019a546020375f4f",
+					"protocol": "https",
+					"host": [
+						"api",
+						"restful-api",
+						"dev"
+					],
+					"path": [
+						"objects",
+						"ff8081819782e69e019a546020375f4f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver producto por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.restful-api.dev/objects?id=ff8081819782e69e019a546020375f4f",
+					"protocol": "https",
+					"host": [
+						"api",
+						"restful-api",
+						"dev"
+					],
+					"path": [
+						"objects"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ff8081819782e69e019a546020375f4f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un producto nuevo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Apple MacBook Pro 16\",\n   \"data\": {\n      \"year\": 2019,\n      \"price\": 1849.99,\n      \"CPU model\": \"Intel Core i9\",\n      \"Hard disk size\": \"1 TB\"\n   }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.restful-api.dev/objects",
+					"protocol": "https",
+					"host": [
+						"api",
+						"restful-api",
+						"dev"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

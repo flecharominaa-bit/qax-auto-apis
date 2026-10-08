@@ -1,0 +1,103 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-1234-56789abcdef0",
+    "name": "Api Testing - QAXPERT - Stage 1",
+    "description": "Colección de pruebas para el Ejercicio 1: Health Check, Registro y Login en la API de Notes (ExpandTesting).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health-check",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health-check"
+          ]
+        },
+        "description": "Verifica que el servidor de la API está vivo y respondiendo."
+      },
+      "response": []
+    },
+    {
+      "name": "02 - Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ninja Tester\",\n  \"email\": \"ninjatester_001@qaxpert.com\",\n  \"password\": \"Password123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/users/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "register"
+          ]
+        },
+        "description": "Crea un nuevo usuario en el sistema. \n\n⚠️ Ojo de Tester: Si corres este request dos veces seguidas, la API te dará un Error 400 porque el correo ya existe. ¡Recuerda cambiar el número del correo (ej. 002, 003) en el Body para tu siguiente prueba!"
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Login User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"ninjatester_001@qaxpert.com\",\n  \"password\": \"Password123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/users/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "login"
+          ]
+        },
+        "description": "Inicia sesión con el usuario recién creado. Devuelve un Token de autenticación."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://practice.expandtesting.com/notes/api",
+      "type": "string"
+    }
+  ]
+}
