@@ -9,12 +9,12 @@ test.describe('Product Lifecycle E2E @regression', () => {
   test('ciclo de vida completo de un producto @regression', async ({ request }) => {
     const productService = new ProductService(request);
 
-    const initialProduct = new ProductRequest('QAX Lifecycle Laptop', {
+    const initialProduct = new ProductRequest('Lenovo ThinkPad X1 Carbon', {
       year: 2024,
       price: 1299.99,
       'CPU model': 'Intel Core i7',
     });
-    const replacementProduct = new ProductRequest('QAX Lifecycle Laptop v2', {
+    const replacementProduct = new ProductRequest('ASUS ROG Zephyrus G14', {
       year: 2025,
       price: 1599.99,
       'CPU model': 'AMD Ryzen 9',
@@ -93,13 +93,16 @@ test.describe('Product Lifecycle E2E @regression', () => {
     });
   });
 
-  test('debe retornar error al hacer PUT con body vacío @regression', async ({ request }) => {
+  // Hallazgo: la API no valida el body del PUT. Un PUT sin `name`
+  // (new ProductRequest() se envía como `{ "data": {} }`) responde 200 en vez de 400.
+  // Habilitar cuando la API valide los campos obligatorios.
+  test.fixme('debe retornar error al hacer PUT con body vacío @regression', async ({ request }) => {
     const productService = new ProductService(request);
     let productId;
 
     await test.step('POST - Crear un producto para reemplazar', async () => {
       const { status, body } = await productService.createProduct(
-        new ProductRequest('QAX Producto PUT vacío', { price: 100 }),
+        new ProductRequest('Dell XPS 13', { price: 100 }),
       );
 
       expect(status).toBe(200);
@@ -111,13 +114,7 @@ test.describe('Product Lifecycle E2E @regression', () => {
     await test.step('PUT - Enviar body vacío', async () => {
       const { status } = await productService.updateProduct(productId, new ProductRequest());
 
-      // TODO: verificar en Postman qué status devuelve realmente la API para un PUT sin name
-      // (new ProductRequest() sin argumentos se envía como `{ "data": {} }`)
-      // y reemplazar este rango por el código exacto (probablemente 400).
-      // Si la API responde 200 (acepta el body vacío), es un hallazgo: reportarlo
-      // y marcar este test con test.fixme explicando el comportamiento.
-      expect(status).toBeGreaterThanOrEqual(400);
-      expect(status).toBeLessThan(500);
+      expect(status).toBe(400);
     });
   });
 
