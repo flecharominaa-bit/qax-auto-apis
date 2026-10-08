@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "ba36a2a7-2450-4de5-87a3-e72678bdf542",
+		"name": "Api Testing - Book Store - QAX V2",
+		"description": "Api Testing para Stage 2 - Reto 2\n\nDocumentación oficial: [https://demoqa.com/swagger/](https://demoqa.com/swagger/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47868274",
+		"_collection_link": "https://ninja-for-testing-s-team.postman.co/workspace/Api-Testing---Ninja-For-testing~face8059-dfb3-4110-9022-f7fbfcaf3235/collection/47868274-ba36a2a7-2450-4de5-87a3-e72678bdf542?action=share&source=collection_link&creator=47868274"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Crear usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extraer el body de la respuesta",
+									"let jsonData = pm.response.json();",
+									"",
+									"// Guardar el userID en variable de colección",
+									"pm.collectionVariables.set(\"userID\", jsonData.userID);",
+									"",
+									"pm.collectionVariables.set(\"username\", jsonData.username);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"ninjaForTesting10e0\",\n    \"password\": \"Test@@1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context_account}}/{{endpoint_user}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context_account}}",
+								"{{endpoint_user}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generar Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extraer el token de la respuesta",
+									"let jsonData = pm.response.json();",
+									"",
+									"// Guardar el token en variable de colección",
+									"pm.collectionVariables.set(\"authToken\", jsonData.token);",
+									"",
+									"// Log en consola",
+									"console.log(\"Token guardado en colección:\", jsonData.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userName\": \"{{username}}\",\n  \"password\": \"Test@@1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context_account}}/{{endpoint_token}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context_account}}",
+								"{{endpoint_token}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Información del usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context_account}}/{{endpoint_user}}/{{userID}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context_account}}",
+								"{{endpoint_user}}",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Agregar un libro a un usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": \"{{userID}}\",\n  \"collectionOfIsbns\": [\n    {\n      \"isbn\": \"9781449325862\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{context_book}}/{{endpoint_book}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{context_book}}",
+								"{{endpoint_book}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener los libros disponibles",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": ""
+		},
+		{
+			"key": "context_account",
+			"value": ""
+		},
+		{
+			"key": "endpoint_user",
+			"value": ""
+		},
+		{
+			"key": "endpoint_token",
+			"value": ""
+		},
+		{
+			"key": "authToken",
+			"value": ""
+		},
+		{
+			"key": "userID",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "endpoint_book",
+			"value": ""
+		},
+		{
+			"key": "context_book",
+			"value": ""
+		}
+	]
+}

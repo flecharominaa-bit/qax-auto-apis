@@ -1,0 +1,12 @@
+{
+  "name": "mission-1-homebanking",
+  "version": "1.0.0",
+  "description": "Mission #1 - Smoke test de la Homebanking Mock API (QAXpert Stage 1)",
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}

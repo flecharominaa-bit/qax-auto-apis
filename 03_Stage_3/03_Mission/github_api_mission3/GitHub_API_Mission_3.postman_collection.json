@@ -1,0 +1,204 @@
+{
+  "info": {
+    "name": "GitHub API - Mission 3",
+    "description": "Endpoints de HU1 (Users), HU2 (Repos) y HU3 (Issues). Configurar las variables baseUrl, token, username y repo antes de ejecutar.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{token}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.github.com" },
+    { "key": "token", "value": "" },
+    { "key": "username", "value": "" },
+    { "key": "repo", "value": "inventario-tienda-postman" }
+  ],
+  "item": [
+    {
+      "name": "HU1 - Users",
+      "item": [
+        {
+          "name": "GET usuario existente",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.github+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{username}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{username}}"]
+            }
+          }
+        },
+        {
+          "name": "GET usuario inexistente (404)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.github+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/users/usuario-que-no-existe-qax-999999",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "usuario-que-no-existe-qax-999999"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU2 - Repos",
+      "item": [
+        {
+          "name": "POST crear repositorio",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/vnd.github+json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{repo}}\",\n  \"description\": \"Sistema de control de stock para una tienda de barrio\",\n  \"private\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/repos",
+              "host": ["{{baseUrl}}"],
+              "path": ["user", "repos"]
+            }
+          }
+        },
+        {
+          "name": "GET consultar repositorio",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.github+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/{{repo}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "{{repo}}"]
+            }
+          }
+        },
+        {
+          "name": "PATCH actualizar descripción",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Accept", "value": "application/vnd.github+json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Control de stock y alertas de reposición para una tienda de barrio\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/{{repo}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "{{repo}}"]
+            }
+          }
+        },
+        {
+          "name": "POST crear repositorio sin token (401)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/vnd.github+json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"catalogo-productos\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/repos",
+              "host": ["{{baseUrl}}"],
+              "path": ["user", "repos"]
+            }
+          }
+        },
+        {
+          "name": "GET repositorio inexistente (404)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.github+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/repo-que-no-existe-999",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "repo-que-no-existe-999"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "HU3 - Issues",
+      "item": [
+        {
+          "name": "POST crear issue",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/vnd.github+json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"El calendario no muestra los turnos del sábado\",\n  \"body\": \"Al abrir la vista semanal, los turnos reservados para el sábado no aparecen, aunque sí figuran en el listado de reservas del día.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/{{repo}}/issues",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "{{repo}}", "issues"]
+            }
+          }
+        },
+        {
+          "name": "GET listar issues",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.github+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/{{repo}}/issues",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "{{repo}}", "issues"]
+            }
+          }
+        },
+        {
+          "name": "POST crear issue sin título (422)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/vnd.github+json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"Falta el título del issue\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/{{repo}}/issues",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "{{repo}}", "issues"]
+            }
+          }
+        },
+        {
+          "name": "GET issues de repositorio inexistente (404)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.github+json" }],
+            "url": {
+              "raw": "{{baseUrl}}/repos/{{username}}/repo-que-no-existe-999/issues",
+              "host": ["{{baseUrl}}"],
+              "path": ["repos", "{{username}}", "repo-que-no-existe-999", "issues"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "qax-auto-apis-romina",
+  "version": "1.0.0",
+  "description": "¡Bienvenido/a al campo de entrenamiento para llevar tus pruebas de APIs al siguiente nivel!",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flecharominaa-bit/qax-auto-apis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/flecharominaa-bit/qax-auto-apis/issues"
+  },
+  "homepage": "https://github.com/flecharominaa-bit/qax-auto-apis#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2"
+  }
+}
